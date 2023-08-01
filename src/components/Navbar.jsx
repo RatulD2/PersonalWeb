@@ -1,10 +1,13 @@
 import { useEffect, useState } from "react";
 
 
-export default function () {
+
+export default function NavBar() {
   const [theme, setTheme] = useState(
     localStorage.getItem("theme") ? localStorage.getItem("theme") : "light"
   );
+
+  const [navbarOpen, setNavbarOpen] = useState(false);
 
   const handleToggle = (e) => {
     if (e.target.checked) {
@@ -22,36 +25,103 @@ export default function () {
 
   return (
     <>
-      <div className="navbar bg-base-100">
+      <div className="navbar bg-base-100 container mx-auto w-3/4 sticky top-0 z-50">
         <div className="flex-1">
+          <a className="btn btn-ghost normal-case text-xl">
           <div className="avatar online placeholder">
             <div className="bg-neutral-focus text-neutral-content rounded w-10">
               <img
-                src="C:\Users\lenovo\Desktop\vitee\ratuld\src\assets\Ratul_11zon.jpeg"
+                src="Ratul_11zon.jpeg"
                 alt="Tailwind-CSS-Avatar-component"
               />
             </div>
           </div>
-          <a className="btn btn-ghost normal-case text-xl">Ratul Das</a>
+            Ratul Das ⚡
+          </a>
         </div>
-        <div className="flex-none">
-          <ul className="menu menu-horizontal px-1">
-            <li>
 
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 color #A8E890" fill="#A8E890" viewBox="0 0 24 24" stroke="#A8E890" strokeWidth={2}>
-  <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-</svg>
+        <div className="md:hidden flex-none">
+        {
+          navbarOpen ? (
+            <button
+              className="btn btn-square btn-ghost"
+              onClick={() => setNavbarOpen(!navbarOpen)}
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="icon icon-tabler icon-tabler-chevron-up border-2 border-lime-300 rounded-xl hover:bg-lime-50"
+                width="28"
+                height="28"
+                viewBox="0 0 24 24"
+                strokeWidth="1.5"
+                stroke="#2c3e50"
+                fill="none"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                <polyline points="6 15 12 9 18 15" />
+              </svg>
+            </button>
+          ) : (
+            <>
+            <button
+              className="btn btn-square btn-ghost"
+              onClick={() => setNavbarOpen(!navbarOpen)}
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="icon icon-tabler icon-tabler-chevron-down border-2 border-lime-300 rounded-xl hover:bg-lime-50"
+                width="28"
+                height="28"
+                viewBox="0 0 24 24"
+                strokeWidth="1.5"
+                stroke="#2c3e50"
+                fill="none"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                <polyline points="6 9 12 15 18 9" />
+              </svg>
+            </button>
+            </>
+          )
+        }
+        </div>
+        <div className="flex-none hidden md:block">
+          <ul className="menu menu-horizontal">
+            <li className="mail border-2 border-lime-300 rounded-xl hover:bg-lime-50 mr-2">
+              <a href="http://">
+                <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 stroke-current" stroke-width="2" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                  <path d="M13 19h-8a2 2 0 0 1 -2 -2v-10a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v5.5" />
+                  <path d="M3 7l9 6l9 -6" />
+                  <path d="M19 16l-2 3h4l-2 3" />
+                </svg>
+              </a>
             </li>
-            <li>
-            <i class="ri-calendar-todo-line "></i>
-
-             
+            <li className="calendar border-2 border-lime-300 rounded-xl hover:bg-lime-50 mr-2">
+              <a href="#">
+                <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 stroke-current"  stroke-width="2" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                  <path d="M13.5 21h-7.5a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v5" />
+                  <path d="M16 3v4" />
+                  <path d="M8 3v4" />
+                  <path d="M4 11h16" />
+                  <path d="M19 16l-2 3h4l-2 3" />
+                </svg>
+              </a>
             </li>
-            <li>
-              <a>Telegram</a>
+            <li className="telegram border-2 border-lime-300 rounded-xl hover:bg-lime-50 mr-2">
+              <a href="/">
+                <svg xmlns="http://www.w3.org/2000/svg"  className="w-6 h-6 stroke-current" viewBox="0 0 24 24" stroke-width="2" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                  <path d="M15 10l-4 4l6 6l4 -16l-18 7l4 2l2 6l3 -4" />
+                </svg>
+              </a>
             </li>
-            
-            <li>
+            <li className="color-swap border-2 border-lime-300 rounded-xl hover:bg-lime-50 mr-2">
               <label className="swap swap-rotate">
                 {/* this hidden checkbox controls the state */}
                 <input type="checkbox" onChange={handleToggle} />
